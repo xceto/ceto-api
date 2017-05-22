@@ -1,15 +1,13 @@
 class DashboardController < ApplicationController
 
 	def index
-		resultado = JSON.parse(open("http://localhost:3000/api/v1?bandera=2").read)
+		resultado = JSON.parse(open("https://sleepy-reaches-57394.herokuapp.com/api/v1?bandera=2").read)
 		@resultado_json = resultado
-
-
 	end
 
 	def new
 
-		revisa_cedidos = JSON.parse(open("http://localhost:3000/api/v1?bandera=3").read)
+		revisa_cedidos = JSON.parse(open("https://sleepy-reaches-57394.herokuapp.com/api/v1?bandera=3").read)
 
 		revisa_cedidos.each do |verifica|
 		 	revisa_existencia = Dashboard.exists?(:folio => verifica['folio'])
