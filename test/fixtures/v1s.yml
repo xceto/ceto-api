@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  folio: 1
+  monto: 1
+  rut_pagador: MyString
+  rut_cedido: MyString
+  estados: MyString
+
+two:
+  id: 1
+  folio: 1
+  monto: 1
+  rut_pagador: MyString
+  rut_cedido: MyString
+  estados: MyString

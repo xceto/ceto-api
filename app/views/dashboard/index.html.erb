@@ -1,0 +1,68 @@
+
+<div class="col-md-12">
+	<h2>Ultimas cesiones de factura</h2>
+</div>
+
+
+<div class="col-md-12" style="padding-bottom: 2%; padding-top: 2%" align="center">
+
+
+	<form class="form-inline">
+		Desde
+	  <div class="form-group">
+	    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+	    <input type="date" class="form-control" id="exampleInputEmail3" placeholder="Desde">
+	  </div>
+	   Hasta
+	  <div class="form-group">
+	    <label class="sr-only" for="exampleInputPassword3">Password</label>
+	    <input type="date" class="form-control" id="exampleInputPassword3" placeholder="Password">
+	  </div>
+	  Estado
+	  <div class="form-group">
+	    <select name="" id="" class="form-control">
+	    	<option value=""> Todos </option>
+	    	<option value=""> Cedido </option>
+	    	<option value=""> No Cedido </option>
+	    </select>
+	  </div>
+	  <button type="submit" class="btn btn-default"> Buscar </button>
+	</form>
+</div>
+
+<div class="col-md-12" align="right" style="padding-bottom: 1%">
+<%== button_to "Guardar Cedidas", new_dashboard_path(), {:class => "btn btn-info btn-xs" } %>
+</div>
+
+<div class="col-md-12">
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<td style="width: 5%"><b>ID</b></td>
+			<td style="width: 7%"><b>Folio</b></td>
+			<td style="width: 5%"><b>Monto</b></td>
+			<td><b>Rut Pagador</b></td>
+			<td><b>Rut Cedido</b></td>
+			<td><b>Fecha Ingreso</b></td>
+			<td><b>Fecha Actualización</b></td>
+			<td><b>Estado</b></td>
+		</tr>
+	</thead>
+
+	<tbody>
+		<%
+		@resultado_json.each do |data| %>
+		<tr>
+			<td><%= data['id']%></td>
+			<td><%= data['folio']%></td>
+			<td>$<%= data['monto']%></td>
+			<td><%= data['rut_pagador']%></td>
+			<td><%= data['rut_cedido']%></td>
+			<td><%= data['created_at'].gsub("Z","")%></td>
+			<td><%= data['updated_at'].gsub("Z","")%></td>
+			<td><%= data['estado']%></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>

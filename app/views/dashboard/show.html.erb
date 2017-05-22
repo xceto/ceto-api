@@ -1,0 +1,39 @@
+<div class="col-md-12">
+	<h2>Cesiones Cedidas</h2>
+</div>
+
+
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<td style="width: 5%"><b>ID</b></td>
+			<td style="width: 7%"><b>Folio</b></td>
+			<td style="width: 5%"><b>Monto</b></td>
+			<td><b>Rut Pagador</b></td>
+			<td><b>Rut Cedido</b></td>
+			<td><b>Fecha Ingreso</b></td>
+			<td><b>Fecha Actualización</b></td>
+			<td><b>Estado</b></td>
+			<td><b>Fecha Guardado</b></td>
+		</tr>
+	</thead>
+
+	<tbody>
+	<% unless @cesiones_cedidas.nil? %>
+		<%
+		@cesiones_cedidas.each do |data| %>
+		<tr>
+			<td><%= data['id']%></td>
+			<td><%= data['folio']%></td>
+			<td>$<%= data['monto']%></td>
+			<td><%= data['rut_pagador']%></td>
+			<td><%= data['rut_cedido']%></td>
+			<td><%= data['fecha_creacion']%></td>
+			<td><%= data['fecha_update']%></td>
+			<td><%= data['estado']%></td>
+			<td><%= data['created_at']%></td>
+		</tr>
+		<% end %>
+	<%end%>
+	</tbody>
+</table>
