@@ -1,24 +1,14 @@
-# README
+Tecnologias utilizadas para el desarrollo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> Ruby 2.3.1
+> Rails 5.1.1
+> MySQL 5.7.16
 
-Things you may want to cover:
+Como ejecutar la app
 
-* Ruby version
+1° Crear la base de datos con el rake:create
+2° Realizar las migraciones rake:migrate
+3° llenar la base de datos con el seed incluido en el proyecto rake:seeds
+4° Ejecutar el servidor
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Json de Api v1 localhost:3000/api/v1
