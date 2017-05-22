@@ -24,7 +24,7 @@
 
 <div class="col-md-12">
 
-<%if @resultado_json[:error].present?%>		
+<%if @resultado_json[:error].present? %>		
 <div> <%= @resultado_json[:error] %> </div>
 <% else %>
 <table class="table table-bordered table-striped">
@@ -42,7 +42,7 @@
 	</thead>
 
 	<tbody>
-		@resultado_json.each do |data| %>
+		<% @resultado_json.each do |data| %>
 		<tr>
 			<td><%= data['id']%></td>
 			<td><%= data['folio']%></td>
@@ -53,9 +53,8 @@
 			<td><%= data['updated_at'].gsub("Z","")%></td>
 			<td><%= data['estado']%></td>
 		</tr>
-		<% 
-			end
-		end %>
+		<% end %>
 	</tbody>
 </table>
+<% end %>
 </div>
