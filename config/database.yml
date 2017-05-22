@@ -1,19 +1,19 @@
 default: &default
   adapter: mysql2
-  database: ceto
-  username: root #Cambiar
-  password: ceto #Cambiar
-  host: CeTo #Cambiar
+  database: sql10175832
+  username: sql10175832 #Cambiar
+  password: YKNZlwj3gI #Cambiar
+  host: sql10.freesqldatabase.com #Cambiar
   timeout: 5000
 
 development:
   <<: *default
-  database: ceto/development
+  database: sql10175832
 
 test:
   <<: *default
-  database: ceto/test
+  database: sql10175832
 
 production:
   <<: *default
-  database: ceto/production
+  database: sql10175832
