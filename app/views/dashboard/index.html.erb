@@ -43,9 +43,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% 
-			paginated @resultado_json
-			@resultado_json.each do |data| %>
+			<% @resultado_json.each do |data| %>
 			<tr>
 				<td><%= data['id']%></td>
 				<td><%= data['folio']%></td>
