@@ -5,11 +5,6 @@ class DashboardController < ApplicationController
 		if params['/dashboard'].present? && params['/dashboard']['estado'].present? && params['/dashboard']['desde'].present? && params['/dashboard']['hasta'].present?
 		  busqueda = "&estado=#{params['/dashboard']['estado']}&desde=#{params['/dashboard']['desde']}&hasta=#{params['/dashboard']['hasta']}"
 		 	@resultado_json = JSON.parse(open("https://sleepy-reaches-57394.herokuapp.com/api/v1?bandera=1"+busqueda).read)
-
-		 	if @resultado_json['error'].present?
-		 		@error = @resultado_json['error']
-		 	end
-
 		else
 			@resultado_json = JSON.parse(open("https://sleepy-reaches-57394.herokuapp.com/api/v1?bandera=2").read)
 		end
