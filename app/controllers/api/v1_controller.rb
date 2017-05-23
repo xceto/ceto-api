@@ -17,12 +17,12 @@ class Api::V1Controller < ApplicationController
 				end
 
 				if resultado.blank?
-					render :json => { error: 'No se encontraron resultados' }
+					render :json => [{ error: 'No se encontraron resultados' }]
 				else
 					render :json => resultado
 				end
 			else
-				render :json => { error: "Debe contener los campos solicitados" }
+				render :json => [{ error: "Debe contener los campos solicitados" }]
 			end
 		when '2'
 			render :json => V1.where("updated_at >= ? AND updated_at <= ?",Time.now-1.month,Time.now), callback: params[:callback]
