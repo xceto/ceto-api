@@ -1,17 +1,18 @@
 class DashboardController < ApplicationController
 
 	def index
-		
-		busqueda = ""
-		bandera = "2"
-
+		@error = ""
 		if params['/dashboard'].present? && params['/dashboard']['estado'].present? && params['/dashboard']['desde'].present? && params['/dashboard']['hasta'].present?
-		 bandera = "1"
-		 busqueda = "&estado=#{params['/dashboard']['estado']}&desde=#{params['/dashboard']['desde']}&hasta=#{params['/dashboard']['hasta']}"	
+		  busqueda = "&estado=#{params['/dashboard']['estado']}&desde=#{params['/dashboard']['desde']}&hasta=#{params['/dashboard']['hasta']}"
+		 	@resultado_json = JSON.parse(open("https://sleepy-reaches-57394.herokuapp.com/api/v1?bandera=1"+busqueda).read)
+
+		 	if @resultado_json['error'].present?
+		 		@error = @resultado_json['error']
+		 	end
+
+		else
+			@resultado_json = JSON.parse(open("https://sleepy-reaches-57394.herokuapp.com/api/v1?bandera=2").read)
 		end
-
-	@resultado_json = JSON.parse(open("https://sleepy-reaches-57394.herokuapp.com/api/v1?bandera=#{bandera}"+busqueda).read)
-
 	end
 
 	def new
@@ -32,10 +33,6 @@ class DashboardController < ApplicationController
 
 	def show
 		@cesiones_cedidas = Dashboard.all.order(:created_at)
-	end
-
-	def buscador
-		byebug
 	end
 
 end

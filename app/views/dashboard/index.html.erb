@@ -13,7 +13,7 @@
 	<%= bootstrap_form_for(buscador_path,method: :post, layout: :inline) do |f| %>
 	  <%= f.date_field :desde %>
 	  <%= f.date_field :hasta %>
-	  <%= f.select :estado, [["Todos", "Todos"], ["Cedida", "Cedida"], ["No Cedida", "No Cedida"]], { label: "Estado" }, { class: "selectpicker" } %>
+	  <%= f.select :estado, [["Todos", "todo"], ["Cedida", "Cedida"], ["No Cedida", "No Cedida"]], { label: "Estado" }, { class: "selectpicker" } %>
 	  <%= f.submit "Buscar" %>
 	<% end %>
 </div>
@@ -23,33 +23,42 @@
 </div>
 
 <div class="col-md-12">
-<table class="table table-bordered table-striped">
-	<thead>
-		<tr>
-			<td style="width: 5%"><b>ID</b></td>
-			<td style="width: 7%"><b>Folio</b></td>
-			<td style="width: 5%"><b>Monto</b></td>
-			<td><b>Rut Pagador</b></td>
-			<td><b>Rut Cedido</b></td>
-			<td><b>Fecha Ingreso</b></td>
-			<td><b>Fecha Actualización</b></td>
-			<td><b>Estado</b></td>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @resultado_json.each do |data| %>
-		<tr>
-			<td><%= data['id']%></td>
-			<td><%= data['folio']%></td>
-			<td>$<%= data['monto']%></td>
-			<td><%= data['rut_pagador']%></td>
-			<td><%= data['rut_cedido']%></td>
-			<td><%= data['created_at'].gsub("Z","")%></td>
-			<td><%= data['updated_at'].gsub("Z","")%></td>
-			<td><%= data['estado']%></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+<% if  @error.present? %>
+<div class="alert alert-danger" role="alert"><%= @error %></div>
+<% else %>
 </div>
+
+<div class="col-md-12">
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<td style="width: 5%"><b>ID</b></td>
+				<td style="width: 7%"><b>Folio</b></td>
+				<td style="width: 5%"><b>Monto</b></td>
+				<td><b>Rut Pagador</b></td>
+				<td><b>Rut Cedido</b></td>
+				<td><b>Fecha Ingreso</b></td>
+				<td><b>Fecha Actualización</b></td>
+				<td><b>Estado</b></td>
+			</tr>
+		</thead>
+		<tbody>
+			<% 
+			paginated @resultado_json
+			@resultado_json.each do |data| %>
+			<tr>
+				<td><%= data['id']%></td>
+				<td><%= data['folio']%></td>
+				<td>$<%= data['monto']%></td>
+				<td><%= data['rut_pagador']%></td>
+				<td><%= data['rut_cedido']%></td>
+				<td><%= data['created_at'].gsub("Z","")%></td>
+				<td><%= data['updated_at'].gsub("Z","")%></td>
+				<td><%= data['estado']%></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<% end %>
